@@ -1,6 +1,6 @@
 ---
-skylounge-yml: "e4a2e2de847a767c4cab89e05d8315f288eb73cc"
-skylounge-yml-html-url: "https://github.com/sky-lounge/demo-application/blob/f9ae654f0401178d6e13347f14bbff3b1a99d788/skylounge.yml"
+skylounge-yml: "f9daa3ba908a92865b98bb43a43d44b339cdbfb6"
+skylounge-yml-html-url: "https://github.com/sky-lounge/demo-application/blob/fa44dd4834e8049949b4ee158e6bbd9e98649672/skylounge.yml"
 lifecycle-template:
   id: "blueprint"
   template-uri: "sky-lounge/skylounge-definitions/lifecycle-templates/cloud-run/lifecycle-template.yml"
@@ -15,7 +15,7 @@ workflows:
   - id: "integration-test"
     template-uri: "sky-lounge/demo-application/skylounge/jobs/integration-test.yml"
     sha: "4009576fdeffc2810583c1995da80db9d9e5d7bd"
-    html-url: "https://github.com/sky-lounge/demo-application/blob/f9ae654f0401178d6e13347f14bbff3b1a99d788/skylounge/jobs/integration-test.yml"
+    html-url: "https://github.com/sky-lounge/demo-application/blob/fa44dd4834e8049949b4ee158e6bbd9e98649672/skylounge/jobs/integration-test.yml"
   steps:
   - id: "build-container-image"
     template-uri: "sky-lounge/skylounge-definitions/step-templates/pack/nginx/build-steps.yml"
