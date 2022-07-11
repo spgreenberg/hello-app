@@ -1,2 +1,4 @@
 # demo-application
-A sample application used for demonstrations of SkyLounge
+
+A sample application for demonstrating SkyLounge
+
