@@ -5,7 +5,8 @@ on:
     branches:
     - develop
     paths:
-    - "public/**, nginx.conf"
+    - public/**
+    - nginx.conf
 jobs:
   build:
     name: Build container image
