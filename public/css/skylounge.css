@@ -1,0 +1,38 @@
+@import "/font/Roboto/Roboto.css";
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  background-color: #1c1c1c;
+  color: #efefef;
+}
+
+a {
+  text-decoration: none;
+  color: #767676;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.links {
+  color: #363636;
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+.icon-links {
+  color: #363636;
+}
+
+.tagline {
+  font-size: 1.3em;
+  font-weight: 300;
+}
+
+
+.footer {
+  color: #767676;
+}
