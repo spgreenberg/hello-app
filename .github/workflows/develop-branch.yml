@@ -24,8 +24,8 @@ jobs:
     - name: build-container-image
       uses: dfreilich/pack-action@v2.1.1
       with:
-        args: "build ${{ env.IMAGE_NAME }} --buildpack paketo-buildpacks/nginx --builder\
-          \ paketobuildpacks/builder:base"
+        args: |
+          build ${{ env.IMAGE_NAME }} --buildpack paketo-buildpacks/nginx --builder paketobuildpacks/builder:base
     - id: auth
       name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v0

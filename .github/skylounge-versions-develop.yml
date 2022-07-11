@@ -1,23 +1,23 @@
 ---
-skylounge-yml: "be7bf5976a84747013dc11abcffe7dcd0c978c74"
-skylounge-yml-html-url: "https://github.com/sky-lounge/demo-application/blob/3b87e848175ecfa03ee5c30db853c3241fc47c51/skylounge.yml"
+skylounge-yml: "e4a2e2de847a767c4cab89e05d8315f288eb73cc"
+skylounge-yml-html-url: "https://github.com/sky-lounge/demo-application/blob/f9ae654f0401178d6e13347f14bbff3b1a99d788/skylounge.yml"
 lifecycle-template:
   id: "blueprint"
   template-uri: "sky-lounge/skylounge-definitions/lifecycle-templates/cloud-run/lifecycle-template.yml"
   sha: "b241bfed916f342d754ebcdef3d88d35fd0b825d"
-  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/46d7f2352cd1ee0dc7853e94fdc136902d5b53e1/lifecycle-templates/cloud-run/lifecycle-template.yml"
+  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/4ee12f66f9ae158973bd4478553b9ef826f75066/lifecycle-templates/cloud-run/lifecycle-template.yml"
 workflows:
 - id: "develop-branch"
   template-uri: "sky-lounge/skylounge-definitions/lifecycle-templates/cloud-run/develop-branch.yml"
   sha: "fe855e329cdad25dd67ce9b520ec0f6987bd61ce"
-  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/46d7f2352cd1ee0dc7853e94fdc136902d5b53e1/lifecycle-templates/cloud-run/develop-branch.yml"
+  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/4ee12f66f9ae158973bd4478553b9ef826f75066/lifecycle-templates/cloud-run/develop-branch.yml"
   jobs:
   - id: "integration-test"
     template-uri: "sky-lounge/demo-application/skylounge/jobs/integration-test.yml"
     sha: "4009576fdeffc2810583c1995da80db9d9e5d7bd"
-    html-url: "https://github.com/sky-lounge/demo-application/blob/3b87e848175ecfa03ee5c30db853c3241fc47c51/skylounge/jobs/integration-test.yml"
+    html-url: "https://github.com/sky-lounge/demo-application/blob/f9ae654f0401178d6e13347f14bbff3b1a99d788/skylounge/jobs/integration-test.yml"
   steps:
   - id: "build-container-image"
     template-uri: "sky-lounge/skylounge-definitions/step-templates/pack/nginx/build-steps.yml"
-    sha: "514a4b5e8c61b3c972a7b6fba6d4604bdc1d98ea"
-    html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/46d7f2352cd1ee0dc7853e94fdc136902d5b53e1/step-templates/pack/nginx/build-steps.yml"
+    sha: "d1b35ad6afa759c58a05e63866915172cdf91439"
+    html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/4ee12f66f9ae158973bd4478553b9ef826f75066/step-templates/pack/nginx/build-steps.yml"
