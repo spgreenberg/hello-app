@@ -1,5 +1,3 @@
-# trigger 7
-
 lifecycle-template: sky-lounge/skylounge-definitions/lifecycle-templates/cloud-run/lifecycle-template.yml
 
 workflows:
@@ -37,5 +35,5 @@ workflows:
 #       app_route: demo.skylounge.io
 
 params:
-  build_paths: ["public/**, nginx.conf"]
+  build_paths: ["public/**", "nginx.conf"]
   registry_full_url: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
