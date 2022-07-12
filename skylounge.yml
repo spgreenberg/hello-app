@@ -1,0 +1,39 @@
+lifecycle-template: sky-lounge/skylounge-definitions/lifecycle-templates/cloud-run/lifecycle-template.yml
+
+workflows:
+  - workflow: develop-branch
+    jobs:
+      - job: build
+        steps:
+          - step: build-container-image
+            template-uri: sky-lounge/skylounge-definitions/step-templates/pack/nginx/build-steps.yml
+        params:
+          registry_base_url: us-west1-docker.pkg.dev
+
+      - job: load-balancer
+        params:
+          dns_zone_name: skyloungedev
+          gcp_project_id: sky-lounge-director
+          gcp_region: us-central1
+          tf_state_bucket: skylounge-tfstate.rscale.io
+
+      - job: integration-test
+        template-uri: sky-lounge/demo-application/skylounge/jobs/integration-test.yml
+
+    params:
+      app_route: demo.skylounge.dev
+
+  - workflow: release
+    jobs:
+      - job: load-balancer
+        params:
+          dns_zone_name: skyloungeio
+          gcp_project_id: sky-lounge-director
+          gcp_region: us-central1
+          tf_state_bucket: skylounge-tfstate.rscale.io
+    params:
+      app_route: demo.skylounge.io
+
+params:
+  build_paths: ["public/**", "nginx.conf"]
+  registry_full_url: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
