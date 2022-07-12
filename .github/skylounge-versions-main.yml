@@ -1,0 +1,15 @@
+---
+skylounge-yml: "c64f92a0b268de979b9b5a992603e71820338694"
+skylounge-yml-html-url: "https://github.com/sky-lounge/demo-application/blob/98dcbe817fc85921c2233037a3184707810f07a7/skylounge.yml"
+lifecycle-template:
+  id: "blueprint"
+  template-uri: "sky-lounge/skylounge-definitions/lifecycle-templates/cloud-run/lifecycle-template.yml"
+  sha: "8c8130aeb919d4bc64aa31187175da25e82d8dc9"
+  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/f5146c050fdfba6a576ec2788c48baec36a33682/lifecycle-templates/cloud-run/lifecycle-template.yml"
+workflows:
+- id: "release"
+  template-uri: "sky-lounge/skylounge-definitions/lifecycle-templates/cloud-run/release.yml"
+  sha: "c4d3ba9ef4948a382df4a2d0f1e8f55bebc6f781"
+  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/f5146c050fdfba6a576ec2788c48baec36a33682/lifecycle-templates/cloud-run/release.yml"
+  jobs: []
+  steps: []
