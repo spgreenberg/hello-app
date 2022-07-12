@@ -26,7 +26,7 @@ jobs:
       uses: dfreilich/pack-action@v2.1.1
       with:
         args: |
-          build ${{ env.IMAGE_NAME }} --buildpack paketo-buildpacks/nginx --builder paketobuildpacks/builder:base
+          build ${{ env.IMAGE_NAME }} --buildpack paketo-buildpacks/nginx --builder paketobuildpacks/builder:base --env BP_WEB_SERVER=nginx
     - id: auth
       name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v0
