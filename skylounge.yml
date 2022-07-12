@@ -37,3 +37,4 @@ workflows:
 params:
   build_paths: ["public/**", "nginx.conf"]
   registry_full_url: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
+# demo
