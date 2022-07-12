@@ -23,16 +23,16 @@ workflows:
     params:
       app_route: demo.skylounge.dev
 
-#   - workflow: release
-#     jobs:
-#       - job: load-balancer
-#         params:
-#           dns_zone_name: skyloungeio
-#           gcp_project_id: sky-lounge-director
-#           gcp_region: us-central1
-#           tf_state_bucket: skylounge-tfstate.rscale.io
-#     params:
-#       app_route: demo.skylounge.io
+  - workflow: release
+    jobs:
+      - job: load-balancer
+        params:
+          dns_zone_name: skyloungeio
+          gcp_project_id: sky-lounge-director
+          gcp_region: us-central1
+          tf_state_bucket: skylounge-tfstate.rscale.io
+    params:
+      app_route: demo.skylounge.io
 
 params:
   build_paths: ["public/**", "nginx.conf"]
