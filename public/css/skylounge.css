@@ -4,13 +4,13 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
   font-weight: 500;
-  background-color: #1c1c1c;
+  background-color: #1A1D27;
   color: #efefef;
 }
 
 a {
   text-decoration: none;
-  color: #767676;
+  color: #ededed;
 }
 
 a:hover {
@@ -18,9 +18,9 @@ a:hover {
 }
 
 .links {
-  color: #363636;
+  color: #ededed;
   font-size: 1.2em;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .icon-links {
@@ -28,7 +28,7 @@ a:hover {
 }
 
 .tagline {
-  font-size: 1.3em;
+  font-size: 1.7em;
   font-weight: 300;
 }
 
