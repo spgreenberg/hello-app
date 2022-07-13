@@ -27,6 +27,18 @@ jobs:
       with:
         args: |
           build ${{ env.IMAGE_NAME }} --buildpack paketo-buildpacks/nginx --builder paketobuildpacks/builder:base --env BP_WEB_SERVER=nginx
+    - name: Checkout skylounge-definitions
+      uses: actions/checkout@v3
+      with:
+        repository: sky-lounge/skylounge-definitions
+        ref: main
+        token: "${{ secrets.SL_BOT_TOKEN }}"
+      path: skylounge-definitions
+    - name: Run default docker scan
+      id: clamscan
+      uses: skylounge-definitions/actions/clamav-virus-scan/docker
+      env:
+        QUIET: false
     - id: auth
       name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v0
