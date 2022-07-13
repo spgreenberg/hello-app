@@ -33,10 +33,10 @@ jobs:
         repository: sky-lounge/skylounge-definitions
         ref: main
         token: "${{ secrets.SL_BOT_TOKEN }}"
-      path: skylounge-definitions
+      path: ./.github/actions/skylounge-definitions
     - name: Run default docker scan
       id: clamscan
-      uses: ./skylounge-definitions/actions/clamav-virus-scan/docker
+      uses: ./.github/actions/skylounge-definitions/actions/clamav-virus-scan/docker
       env:
         QUIET: false
     - id: auth
