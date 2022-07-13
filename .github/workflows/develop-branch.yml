@@ -1,0 +1,143 @@
+---
+name: develop branch - Build Deploy Test
+on:
+  push:
+    branches:
+    - develop
+    paths:
+    - public/**
+    - nginx.conf
+jobs:
+  build:
+    name: Build container image
+    permissions:
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    env:
+      REGISTRY: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
+    steps:
+    - name: Checkout branch
+      uses: actions/checkout@v3
+    - name: Set image name
+      run: |
+        echo "IMAGE_NAME=${{ env.REGISTRY }}/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_ENV
+    - name: build-container-image
+      uses: dfreilich/pack-action@v2.1.1
+      with:
+        args: |
+          build ${{ env.IMAGE_NAME }} --buildpack paketo-buildpacks/nginx --builder paketobuildpacks/builder:base --env BP_WEB_SERVER=nginx
+    - id: auth
+      name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v0
+      with:
+        credentials_json: "${{ secrets.GOOGLE_CREDENTIALS }}"
+    - name: Push container image
+      run: |
+        gcloud auth configure-docker $REGISTRY_BASE_URL
+        docker push ${{ env.IMAGE_NAME }}
+      env:
+        REGISTRY_BASE_URL: us-west1-docker.pkg.dev
+  deploy:
+    needs: build
+    name: Deploy to develop
+    runs-on: ubuntu-latest
+    env:
+      REGISTRY: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
+    steps:
+    - name: Checkout branch
+      uses: actions/checkout@v3
+    - name: Set image name
+      run: |
+        echo "IMAGE_NAME=${{ env.REGISTRY }}/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_ENV
+    - id: auth
+      name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v0
+      with:
+        credentials_json: "${{ secrets.GOOGLE_CREDENTIALS }}"
+    - id: deploy
+      uses: google-github-actions/deploy-cloudrun@v0
+      with:
+        service: "${{ github.event.repository.name }}-${{ github.ref_name }}"
+        image: "${{ env.IMAGE_NAME }}"
+  load-balancer:
+    needs: deploy
+    name: Create and configure load balancer
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: lifecycle-templates/cloud-run/terraform
+    steps:
+    - name: Checkout skylounge-definitions
+      uses: actions/checkout@v3
+      with:
+        repository: sky-lounge/skylounge-definitions
+        ref: main
+        token: "${{ secrets.SL_BOT_TOKEN }}"
+    - uses: hashicorp/setup-terraform@v2
+    - id: auth
+      name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v0
+      with:
+        credentials_json: "${{ secrets.GOOGLE_CREDENTIALS }}"
+    - name: Prepare Backend Config
+      run: |
+        cat << EOF > config.gcs.tfbackend
+        bucket = "$TF_STATE_BUCKET"
+        prefix = "${REPO_NAME}-${REPO_BRANCH}"
+        EOF
+      env:
+        TF_STATE_BUCKET: skylounge-tfstate.rscale.io
+        REPO_NAME: "${{ github.event.repository.name }}"
+        REPO_BRANCH: "${{ github.ref_name }}"
+    - name: Terraform Init
+      run: terraform init -backend-config=config.gcs.tfbackend
+    - name: Prepare Terraform Vars File
+      run: |
+        cat << EOF > terraform.tfvars
+        gcp_project_id     = "$GCP_PROJECT_ID"
+        gcp_region = "$GCP_REGION"
+        service_name = "$SERVICE_NAME"
+        domain = "$DOMAIN"
+        dns_zone_name = "$DNS_ZONE_NAME"
+        EOF
+      env:
+        GCP_PROJECT_ID: sky-lounge-director
+        GCP_REGION: us-central1
+        SERVICE_NAME: "${{ github.event.repository.name }}-${{ github.ref_name }}"
+        DOMAIN: demo.skylounge.dev
+        DNS_ZONE_NAME: skyloungedev
+    - name: Terraform Apply
+      run: |
+        terraform apply -auto-approve
+  integration-test:
+    needs: load-balancer
+    name: Integration Test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout develop branch
+      uses: actions/checkout@v3
+    - name: Verify index page
+      run: |
+        set -ex
+        status_code=$(curl -L -o /dev/null -s -w "%{http_code}" https://${APP_URL})
+        [[ 200 -eq $status_code ]] || (echo "CURL FAILED to return 200 status" && exit 1)
+        response=$(curl -L https://${APP_URL})
+        [[ $response == *"SkyLounge Demo Application"* ]] || (echo "CURL FAILED to return result containing substring: SkyLounge Demo Application" && exit 1)
+      env:
+        APP_URL: demo.skylounge.dev
+  artifact-version:
+    needs: integration-test
+    name: Update artifact version
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout branch
+      uses: actions/checkout@v3
+    - name: Update Artifact Version
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+        echo "${{ github.sha }}" > deployed-version.txt
+        git add deployed-version.txt
+        git commit -m "update deployed version: ${{ github.sha }}"
+        git push origin develop
