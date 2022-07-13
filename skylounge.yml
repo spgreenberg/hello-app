@@ -12,7 +12,7 @@ workflows:
 
       - job: load-balancer
         params:
-          dns_zone_name: skyloungedev
+          dns_zone_nam: skyloungedev
           gcp_project_id: sky-lounge-director
           gcp_region: us-central1
           tf_state_bucket: skylounge-tfstate.rscale.io
