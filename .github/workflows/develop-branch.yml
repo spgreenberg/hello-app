@@ -36,7 +36,7 @@ jobs:
       path: skylounge-definitions
     - name: Run default docker scan
       id: clamscan
-      uses: skylounge-definitions/actions/clamav-virus-scan/docker
+      uses: ./skylounge-definitions/actions/clamav-virus-scan/docker
       env:
         QUIET: false
     - id: auth
