@@ -39,3 +39,33 @@ jobs:
       run: |
         gcloud auth configure-docker $REGISTRY_BASE_URL
         docker push ${{ env.IMAGE_NAME }}
+  deploy:
+    needs: build
+    name: Deploy to development
+    permissions:
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    env:
+      REGISTRY: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
+    steps:
+    - name: Checkout branch
+      uses: actions/checkout@v3
+    - id: auth
+      name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v0
+      with:
+        credentials_json: "${{ secrets.GOOGLE_CREDENTIALS }}"
+    - id: deploy
+      name: Deploy to Google Cloud Run
+      uses: google-github-actions/deploy-cloudrun@v0
+      with:
+        service: skylounge-hello
+        image: "${{ env.REGISTRY }}/${{ github.event.repository.name }}:${{ github.sha\
+          \ }}"
+    - name: Report website URL
+      run: |
+        echo "To see the deployed website, point your web browser at:"
+        echo "$URL"
+      env:
+        URL: "${{ steps.deploy.outputs.url }}"
