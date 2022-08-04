@@ -21,6 +21,6 @@ workflows:
       #   template-uri: # ./skylounge/jobs/integration-test.yml
 
     params:
-      build_paths: ["public/**"] # The array of paths in the repository that will trigger this workflow on change; preset for this Hello World example.
+      build_paths: ["**/*"] # The array of paths in the repository that will trigger this workflow on change; preset for this Hello World example.
       registry_full_url: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
 #trigger 2
