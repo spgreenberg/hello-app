@@ -22,16 +22,12 @@ jobs:
     - name: Set image name
       run: |
         echo "IMAGE_NAME=${{ env.REGISTRY }}/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_ENV
-    - name: Checkout
-      uses: actions/checkout@v3
     - name: Build
       uses: docker/build-push-action@v3
       with:
         context: .
         push: false
         tags: "${{ env.IMAGE_NAME }}"
-    - name: Checkout
-      uses: actions/checkout@v3
     - id: auth
       name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v0
