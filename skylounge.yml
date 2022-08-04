@@ -1,4 +1,4 @@
-blueprint-uri: sky-lounge/skylounge-definitions/blueprints/cloud-run-hello-world/blueprint.yml
+blueprint-uri: sky-lounge/skylounge-definitions/blueprints/hello-world/blueprint.yml
 
 workflows:
   - workflow: build-deploy
