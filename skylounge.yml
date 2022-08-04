@@ -6,22 +6,29 @@ workflows:
     - job: build
       steps:
         - step: build-container-image
-          template-uri: sky-lounge/skylounge-definitions/step-templates/docker/google-artifact-registry/build-step.yml   
+          template-uri: sky-lounge/skylounge-definitions/step-templates/docker/build-steps.yml
             # Specify the URI to the step to build the container image.
             # Choose from the following provided by SkyLounge:
-            # - sky-lounge/skylounge-definitions/step-templates/docker/google-artifact-registry/build-steps.yml
-            # - sky-lounge/skylounge-definitions/step-templates/docker/dockerhub/build-steps.yml
-            # - sky-lounge/skylounge-definitions/step-templates/docker/ghcr/build-steps.yml
+            # - sky-lounge/skylounge-definitions/step-templates/docker/build-steps.yml
+            # - sky-lounge/skylounge-definitions/step-templates/pack/nginx/build-steps.yml
             # or you may use your own. Be sure the custom task uses the `IMAGE_NAME`
             # environment variable as the image name.
-      params: 
-        registry_base_url: us-west1-docker.pkg.dev
 
-    # - job: integration-test
-    #   template-uri: # ./skylounge/jobs/integration-test.yml
+    - job: push
+      steps:
+        - step: push-container-image
+          template-uri: sky-lounge/skylounge-definitions/step-templates/google/artifact-registry/push-steps.yml
+            # Specify the URI to the step to push the container image to storage.
+            # Choose from the following provided by SkyLounge:
+            # - sky-lounge/skylounge-definitions/step-templates/docker/push-steps.yml
+            # - sky-lounge/skylounge-definitions/step-templates/github/container-registry/push-steps.yml
+            # - sky-lounge/skylounge-definitions/step-templates/google/artifact-registry/push-steps.yml
+            # or you may use your own. Be sure the custom task uses the `IMAGE_NAME`
+            # environment variable as the image name.
 
 params:
   build_paths: ["**/*"] # The array of paths in the repository that will trigger this workflow on change; preset for this Hello World example.
+  registry_base_url: us-west1-docker.pkg.dev
   registry_full_url: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
   gcloud_region: us-central1
 #trigger 3
