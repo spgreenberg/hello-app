@@ -20,8 +20,8 @@ workflows:
     # - job: integration-test
     #   template-uri: # ./skylounge/jobs/integration-test.yml
 
-  params:
-    build_paths: ["**/*"] # The array of paths in the repository that will trigger this workflow on change; preset for this Hello World example.
-    registry_full_url: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
-    gcloud_region: us-central1
+params:
+  build_paths: ["**/*"] # The array of paths in the repository that will trigger this workflow on change; preset for this Hello World example.
+  registry_full_url: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
+  gcloud_region: us-central1
 #trigger 3
