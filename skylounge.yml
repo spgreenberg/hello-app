@@ -6,7 +6,7 @@ workflows:
       - job: build
         steps:
           - step: build-container-image
-            template-uri: sky-lounge/skylounge-definitions/step-templates/docker/google-artifact-registry/build-steps.yml   
+            template-uri: sky-lounge/skylounge-definitions/step-templates/docker/google-artifact-registry/build-step.yml   
               # Specify the URI to the step to build the container image.
               # Choose from the following provided by SkyLounge:
               # - sky-lounge/skylounge-definitions/step-templates/docker/google-artifact-registry/build-steps.yml
