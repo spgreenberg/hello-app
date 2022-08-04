@@ -6,7 +6,7 @@ workflows:
       - job: build
         steps:
           - step: build-container-image
-            template-uri: sky-lounge/skylounge-definitions/step-templates/docker/google-artifact-registry/build-steps.yml
+            template-uri: sky-lounge/skylounge-definitions/step-templates/docker/google-artifact-registry/build-steps.yml   
               # Specify the URI to the step to build the container image.
               # Choose from the following provided by SkyLounge:
               # - sky-lounge/skylounge-definitions/step-templates/docker/google-artifact-registry/build-steps.yml
@@ -23,4 +23,4 @@ workflows:
     params:
       build_paths: ["public/**"] # The array of paths in the repository that will trigger this workflow on change; preset for this Hello World example.
       registry_full_url: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
-#trigger
+#trigger 2
