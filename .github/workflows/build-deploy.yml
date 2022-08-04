@@ -63,6 +63,13 @@ jobs:
         service: skylounge-hello
         image: "${{ env.REGISTRY }}/${{ github.event.repository.name }}:${{ github.sha\
           \ }}"
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v0
+    - name: Set public policy
+      run: |
+        gcloud run services add-iam-policy-binding skylounge-hello \
+          --member="allUsers" \
+          --role="roles/run.invoker"
     - name: Report website URL
       run: |
         echo "To see the deployed website, point your web browser at:"
