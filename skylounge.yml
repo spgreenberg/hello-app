@@ -13,9 +13,6 @@ workflows:
             # - sky-lounge/skylounge-definitions/step-templates/pack/nginx/build-steps.yml
             # or you may use your own. Be sure the custom task uses the `IMAGE_NAME`
             # environment variable as the image name.
-
-    - job: push
-      steps:
         - step: push-container-image
           template-uri: sky-lounge/skylounge-definitions/step-templates/google/artifact-registry/push-steps.yml
             # Specify the URI to the step to push the container image to storage.
