@@ -2,7 +2,7 @@
 
 This sample repository uses a [SkyLounge blueprint]() to build, test, and deploy the single-page website:
 
-<img src="public/img/SkyLounge-Hello-World.jpg" alt="Hello World snapshot" style="width:33%;vertical-align:middle;margin:0 33% 1em 33%">
+<img src="SkyLounge-Hello-World.jpg" alt="Hello World snapshot" style="width:33%;vertical-align:middle;margin:0 33% 1em 33%">
 
 via an `nginx` web server in a [Google Cloud](https://cloud.google.com) project.
 
