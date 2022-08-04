@@ -1,19 +1,19 @@
 ---
-skylounge-yml: "64c7b8bb66fccd0218ce48b3bd57526ccdd5156b"
-skylounge-yml-html-url: "https://github.com/sky-lounge/hello/blob/f298790944b035a37e957a16019708df2859b504/skylounge.yml"
+skylounge-yml: "e122cb991e9c1ce8393b2389fd2921a4491021d9"
+skylounge-yml-html-url: "https://github.com/sky-lounge/hello/blob/e493163a58ba95b1104ff884d5af2cb0443ad7c7/skylounge.yml"
 lifecycle-template:
   id: "blueprint"
   template-uri: "sky-lounge/skylounge-definitions/blueprints/hello-world/blueprint.yml"
   sha: "713550353389e6c3bcd589a80c0f993ce3e76c0b"
-  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/473f7a99af2740ce7b108f7f79fdcc64550775c5/blueprints/hello-world/blueprint.yml"
+  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/9ed4b22f9a222a9c40de44384c8cccf5393241fc/blueprints/hello-world/blueprint.yml"
 workflows:
 - id: "build-deploy"
   template-uri: "sky-lounge/skylounge-definitions/blueprints/hello-world/build-deploy.yml"
-  sha: "e3c87dc79196c2ec83c64cbc77ad58aefaf26928"
-  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/473f7a99af2740ce7b108f7f79fdcc64550775c5/blueprints/hello-world/build-deploy.yml"
+  sha: "5521f323e8cd467d86889e88a6058030e425c309"
+  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/9ed4b22f9a222a9c40de44384c8cccf5393241fc/blueprints/hello-world/build-deploy.yml"
   jobs: []
   steps:
   - id: "build-container-image"
-    template-uri: "sky-lounge/skylounge-definitions/step-templates/docker/google-artifact-registry/build-step.yml"
-    sha: "53077588a2e66c019a696518859149d4b0697b9a"
-    html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/473f7a99af2740ce7b108f7f79fdcc64550775c5/step-templates/docker/google-artifact-registry/build-step.yml"
+    template-uri: "sky-lounge/skylounge-definitions/step-templates/docker/build-steps.yml"
+    sha: "e49e03b5c2d33c1bdc08df6e0933364aa03ca8da"
+    html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/9ed4b22f9a222a9c40de44384c8cccf5393241fc/step-templates/docker/build-steps.yml"
