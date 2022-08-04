@@ -1,19 +1,19 @@
 ---
-skylounge-yml: "c10420b843c963391eb8edddb57aba97270c93d0"
-skylounge-yml-html-url: "https://github.com/sky-lounge/hello/blob/cd2525d12fb9bc74fa39d1409d6ed62ec597343b/skylounge.yml"
+skylounge-yml: "64c7b8bb66fccd0218ce48b3bd57526ccdd5156b"
+skylounge-yml-html-url: "https://github.com/sky-lounge/hello/blob/f298790944b035a37e957a16019708df2859b504/skylounge.yml"
 lifecycle-template:
   id: "blueprint"
   template-uri: "sky-lounge/skylounge-definitions/blueprints/hello-world/blueprint.yml"
   sha: "713550353389e6c3bcd589a80c0f993ce3e76c0b"
-  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/9837ca04742728a733ffc4b6bd963e1814ab1cee/blueprints/hello-world/blueprint.yml"
+  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/473f7a99af2740ce7b108f7f79fdcc64550775c5/blueprints/hello-world/blueprint.yml"
 workflows:
 - id: "build-deploy"
   template-uri: "sky-lounge/skylounge-definitions/blueprints/hello-world/build-deploy.yml"
-  sha: "b7db1b05be451580b115158dda692e5af4bc7314"
-  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/9837ca04742728a733ffc4b6bd963e1814ab1cee/blueprints/hello-world/build-deploy.yml"
+  sha: "e3c87dc79196c2ec83c64cbc77ad58aefaf26928"
+  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/473f7a99af2740ce7b108f7f79fdcc64550775c5/blueprints/hello-world/build-deploy.yml"
   jobs: []
   steps:
   - id: "build-container-image"
     template-uri: "sky-lounge/skylounge-definitions/step-templates/docker/google-artifact-registry/build-step.yml"
     sha: "53077588a2e66c019a696518859149d4b0697b9a"
-    html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/9837ca04742728a733ffc4b6bd963e1814ab1cee/step-templates/docker/google-artifact-registry/build-step.yml"
+    html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/473f7a99af2740ce7b108f7f79fdcc64550775c5/step-templates/docker/google-artifact-registry/build-step.yml"
