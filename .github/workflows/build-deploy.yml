@@ -29,6 +29,15 @@ jobs:
         context: .
         push: false
         tags: "${{ env.IMAGE_NAME }}"
+    - id: auth
+      name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v0
+      with:
+        credentials_json: "${{ secrets.GOOGLE_CREDENTIALS }}"
+    - name: Push container image
+      run: |
+        gcloud auth configure-docker $REGISTRY_BASE_URL
+        docker push ${{ env.IMAGE_NAME }}
   deploy:
     needs: build
     name: Deploy to development
@@ -50,10 +59,6 @@ jobs:
         credentials_json: "${{ secrets.GOOGLE_CREDENTIALS }}"
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@v0
-    - name: Push container image
-      run: |
-        gcloud auth configure-docker $REGISTRY_BASE_URL
-        docker push ${{ env.IMAGE_NAME }}
     - id: deploy
       name: Deploy to Google Cloud Run
       uses: google-github-actions/deploy-cloudrun@v0
