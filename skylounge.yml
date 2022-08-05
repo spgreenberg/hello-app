@@ -14,7 +14,7 @@ workflows:
             # or you may use your own. Be sure the custom task uses the `IMAGE_NAME`
             # environment variable as the image name.
         - step: push-container-image
-          template-uri: sky-lounge/skylounge-definitions/step-templates/github/container-registry/push-steps.ym
+          template-uri: sky-lounge/skylounge-definitions/step-templates/github/container-registry/push-steps.yml
             # Specify the URI to the step to push the container image to storage.
             # Choose from the following provided by SkyLounge:
             # - sky-lounge/skylounge-definitions/step-templates/docker/push-steps.yml
