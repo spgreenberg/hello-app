@@ -1,20 +1,44 @@
-@import "/font/Roboto/Roboto.css";
+@import "../font/Syne/Syne.css";
+@import "../font/Inter/Inter.css";
 
 body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1em;
+  font-family: 'Inter';
+  font-style: normal;
+  background: #2A324B;
+}
+
+.hello {
+  font-family: 'Syne';
   font-weight: 500;
-  background-color: #1A1D27;
-  color: #efefef;
+  font-size: 2em;
+  color: #cfcfcf;
+}
+
+.logo {
+  font-family: 'Syne';
+  font-weight: 700;
+  font-size: 10em;
+}
+
+.sky {
+  color: #4293DD;
+}
+
+.lounge {
+  color: #ffffff;
 }
 
 a {
   text-decoration: none;
-  color: #ededed;
+  color: #cfcfcf;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+i {
+  font-size: 1.5em;
 }
 
 .links {
@@ -23,13 +47,10 @@ a:hover {
   font-weight: 300;
 }
 
-.icon-links {
-  color: #363636;
-}
-
 .tagline {
   font-size: 1.7em;
   font-weight: 300;
+  color: #ffffff;
 }
 
 
