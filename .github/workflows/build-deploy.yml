@@ -76,6 +76,7 @@ jobs:
         REGION: us-central1
     - name: Get website URL
       run: |
+        echo "APP_URL=$URL" >> $GITHUB_ENV
         echo "To see the deployed website, point your web browser at:"
         echo "$URL"
       env:
