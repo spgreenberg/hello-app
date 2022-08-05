@@ -1,5 +1,0 @@
-.vscode/
-skylounge-hello-world.code-workspace
-# Ignore generated credentials from google-github-actions/auth
-gha-creds-*.json
-SkyLounge-Hello-World.png
