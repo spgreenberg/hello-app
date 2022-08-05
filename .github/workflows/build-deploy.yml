@@ -15,8 +15,8 @@ jobs:
       packages: write
     runs-on: ubuntu-latest
     env:
-      REGISTRY: ghcr.io/sky-lounge
-      REGISTRY_BASE_URL: ghcr.io
+      REGISTRY: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
+      REGISTRY_BASE_URL: us-west1-docker.pkg.dev
     steps:
     - name: Checkout branch
       uses: actions/checkout@v3
@@ -29,18 +29,6 @@ jobs:
         context: .
         push: false
         tags: "${{ env.IMAGE_NAME }}"
-    - name: Login to GitHub Container Registry
-      uses: docker/login-action@v2
-      with:
-        registry: ghcr.io
-        username: "${{ github.repository_owner }}"
-        password: "${{ secrets.GITHUB_TOKEN }}"
-    - name: Build and push
-      uses: docker/build-push-action@v3
-      with:
-        context: .
-        push: true
-        tags: "${{ env.IMAGE_NAME }}"
   deploy:
     needs: build
     name: Deploy to development
@@ -49,7 +37,9 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     env:
-      REGISTRY: ghcr.io/sky-lounge
+      REGISTRY: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
+    outputs:
+      app_url: "${{ steps.deploy.outputs.url }}"
     steps:
     - name: Checkout branch
       uses: actions/checkout@v3
@@ -60,6 +50,10 @@ jobs:
         credentials_json: "${{ secrets.GOOGLE_CREDENTIALS }}"
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@v0
+    - name: Push container image
+      run: |
+        gcloud auth configure-docker $REGISTRY_BASE_URL
+        docker push ${{ env.IMAGE_NAME }}
     - id: deploy
       name: Deploy to Google Cloud Run
       uses: google-github-actions/deploy-cloudrun@v0
@@ -75,7 +69,7 @@ jobs:
           --region=${REGION}
       env:
         REGION: us-central1
-    - name: Report website URL
+    - name: Get website URL
       run: |
         echo "To see the deployed website, point your web browser at:"
         echo "$URL"
