@@ -1,23 +1,23 @@
 ---
 skylounge-yml: "a8c2ac8252cfe38415e57bcc00c371d07024e38d"
-skylounge-yml-html-url: "https://github.com/sky-lounge/hello/blob/82987ef08633b3d51b08b661854e7c16b45e676d/skylounge.yml"
+skylounge-yml-html-url: "https://github.com/sky-lounge/hello/blob/20534637363d6ad85f4e09d737d945a2eb51593c/skylounge.yml"
 lifecycle-template:
   id: "blueprint"
   template-uri: "sky-lounge/skylounge-definitions/blueprints/hello-world/blueprint.yml"
   sha: "f34e8ea991b9c187bdaecdcedff9171f34689d92"
-  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/932f4e80f11384e2d9ff07895fa184e357415180/blueprints/hello-world/blueprint.yml"
+  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/cfe57e793ddc5f37687a77aecbe90dd73be64e53/blueprints/hello-world/blueprint.yml"
 workflows:
 - id: "build-deploy"
   template-uri: "sky-lounge/skylounge-definitions/blueprints/hello-world/build-deploy.yml"
-  sha: "d5f89b1d71714e19edfbc6fc60093b833fe19650"
-  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/932f4e80f11384e2d9ff07895fa184e357415180/blueprints/hello-world/build-deploy.yml"
+  sha: "79db0e2c280729f7ad49d2d58c2f7ccd5bec5d8e"
+  html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/cfe57e793ddc5f37687a77aecbe90dd73be64e53/blueprints/hello-world/build-deploy.yml"
   jobs:
   - id: "integration-test"
     template-uri: "sky-lounge/hello/skylounge/jobs/integration-test.yml"
-    sha: "05d6f915e834a89e5d74ff09a9a171209f97ef71"
-    html-url: "https://github.com/sky-lounge/hello/blob/82987ef08633b3d51b08b661854e7c16b45e676d/skylounge/jobs/integration-test.yml"
+    sha: "0f0d62c372c3b8d4a6306a3a5273aeaacf03b590"
+    html-url: "https://github.com/sky-lounge/hello/blob/20534637363d6ad85f4e09d737d945a2eb51593c/skylounge/jobs/integration-test.yml"
   steps:
   - id: "build-container-image"
     template-uri: "sky-lounge/skylounge-definitions/step-templates/docker/build-steps.yml"
     sha: "ed2621386b603fa0e6e247887ff112931b581c55"
-    html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/932f4e80f11384e2d9ff07895fa184e357415180/step-templates/docker/build-steps.yml"
+    html-url: "https://github.com/sky-lounge/skylounge-definitions/blob/cfe57e793ddc5f37687a77aecbe90dd73be64e53/step-templates/docker/build-steps.yml"
