@@ -15,7 +15,7 @@ workflows:
             # environment variable as the image name.
 
     - job: integration-test
-      template-uri: skylounge/jobs/integration-test.yml
+      template-uri: sky-lounge/hello/skylounge/jobs/integration-test.yml
 
 params:
   build_paths: ["**/*"] # The array of paths in the repository that will trigger this workflow on change; preset for this Hello World example.
