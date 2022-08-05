@@ -80,3 +80,19 @@ jobs:
         echo "$URL"
       env:
         URL: "${{ steps.deploy.outputs.url }}"
+  integration-test:
+    needs: deploy
+    name: Integration Test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout branch
+      uses: actions/checkout@v3
+    - name: Verify index page
+      run: |
+        set -ex
+        status_code=$(curl -L -o /dev/null -s -w "%{http_code}" ${APP_URL})
+        [[ 200 -eq $status_code ]] || (echo "CURL FAILED to return 200 status" && exit 1)
+        response=$(curl -L ${APP_URL})
+        [[ $response == *"Better Automation for Software Organizations"* ]] || (echo "CURL FAILED to return result containing substring: Better Automation for Software Organizations" && exit 1)
+      env:
+        APP_URL: "${{ needs.jobs.deploy.outputs.app_url }}"
