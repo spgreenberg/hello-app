@@ -13,19 +13,14 @@ workflows:
             # - sky-lounge/skylounge-definitions/step-templates/pack/nginx/build-steps.yml
             # or you may use your own. Be sure the custom task uses the `IMAGE_NAME`
             # environment variable as the image name.
-        - step: push-container-image
-          template-uri: sky-lounge/skylounge-definitions/step-templates/github/container-registry/push-steps.yml
-            # Specify the URI to the step to push the container image to storage.
-            # Choose from the following provided by SkyLounge:
-            # - sky-lounge/skylounge-definitions/step-templates/docker/push-steps.yml
-            # - sky-lounge/skylounge-definitions/step-templates/github/container-registry/push-steps.yml
-            # - sky-lounge/skylounge-definitions/step-templates/google/artifact-registry/push-steps.yml
-            # or you may use your own. Be sure the custom task uses the `IMAGE_NAME`
-            # environment variable as the image name.
+    - job: test
+      steps:
+        - step: integration-test
+          template-uri: sky-lounge/skylounge-hello-world/skylounge/jobs/integration-test.yml
 
 params:
   build_paths: ["**/*"] # The array of paths in the repository that will trigger this workflow on change; preset for this Hello World example.
-  registry_base_url: ghcr.io
-  registry_full_url: ghcr.io/sky-lounge
+  registry_base_url: us-west1-docker.pkg.dev
+  registry_full_url: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
   gcloud_region: us-central1
 #trigger 9
