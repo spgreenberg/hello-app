@@ -76,7 +76,6 @@ jobs:
         REGION: us-central1
     - name: Get website URL
       run: |
-        echo "APP_URL=$URL" >> $GITHUB_ENV
         echo "To see the deployed website, point your web browser at:"
         echo "$URL"
       env:
@@ -96,4 +95,4 @@ jobs:
         response=$(curl -L ${APP_URL})
         [[ $response == *"Better Automation for Software Organizations"* ]] || (echo "CURL FAILED to return result containing substring: Better Automation for Software Organizations" && exit 1)
       env:
-        APP_URL: "${{ needs.jobs.deploy.outputs.app_url }}"
+        APP_URL: "${{ env.APP_URL }}"
