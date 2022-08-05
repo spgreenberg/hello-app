@@ -1,6 +1,6 @@
 ---
 skylounge-yml: "a8c2ac8252cfe38415e57bcc00c371d07024e38d"
-skylounge-yml-html-url: "https://github.com/sky-lounge/hello/blob/20534637363d6ad85f4e09d737d945a2eb51593c/skylounge.yml"
+skylounge-yml-html-url: "https://github.com/sky-lounge/hello/blob/e632d612f6ba5452cd2602ca31e6e7a5159dec02/skylounge.yml"
 lifecycle-template:
   id: "blueprint"
   template-uri: "sky-lounge/skylounge-definitions/blueprints/hello-world/blueprint.yml"
@@ -14,8 +14,8 @@ workflows:
   jobs:
   - id: "integration-test"
     template-uri: "sky-lounge/hello/skylounge/jobs/integration-test.yml"
-    sha: "0f0d62c372c3b8d4a6306a3a5273aeaacf03b590"
-    html-url: "https://github.com/sky-lounge/hello/blob/20534637363d6ad85f4e09d737d945a2eb51593c/skylounge/jobs/integration-test.yml"
+    sha: "92d6f89e59a38429c9ad08b57875caa0006f05af"
+    html-url: "https://github.com/sky-lounge/hello/blob/e632d612f6ba5452cd2602ca31e6e7a5159dec02/skylounge/jobs/integration-test.yml"
   steps:
   - id: "build-container-image"
     template-uri: "sky-lounge/skylounge-definitions/step-templates/docker/build-steps.yml"

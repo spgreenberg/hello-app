@@ -90,9 +90,9 @@ jobs:
     - name: Verify index page
       run: |
         set -ex
-        status_code=$(curl -L -o /dev/null -s -w "%{http_code}" ${APP_URL})
+        # status_code=$(curl -L -o /dev/null -s -w "%{http_code}" ${APP_URL})
+        status_code=$(curl -L -o /dev/null -s -w "%{http_code}" ${{ needs.jobs.deploy.outputs.app_url }})
         [[ 200 -eq $status_code ]] || (echo "CURL FAILED to return 200 status" && exit 1)
-        response=$(curl -L ${APP_URL})
+        # response=$(curl -L ${APP_URL})
+        response=$(curl -L ${{ needs.jobs.deploy.outputs.app_url }})
         [[ $response == *"Better Automation for Software Organizations"* ]] || (echo "CURL FAILED to return result containing substring: Better Automation for Software Organizations" && exit 1)
-      env:
-        APP_URL: "${{ env.APP_URL }}"
