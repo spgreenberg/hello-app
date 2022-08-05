@@ -1,6 +1,6 @@
 ---
-skylounge-yml: "cc780d586156bbe9594b7f2b915a63bb4c2ba7c9"
-skylounge-yml-html-url: "https://github.com/sky-lounge/hello/blob/33862c0d232b8b964888a9ab5cf3b3b1372d7403/skylounge.yml"
+skylounge-yml: "82cd8450aa44eb6c77963d8979268f5ac2bbaa99"
+skylounge-yml-html-url: "https://github.com/sky-lounge/hello/blob/9bf1a333e981c1508902b105c97d19dbff7be6c1/skylounge.yml"
 lifecycle-template:
   id: "blueprint"
   template-uri: "sky-lounge/skylounge-definitions/blueprints/hello-world/blueprint.yml"
