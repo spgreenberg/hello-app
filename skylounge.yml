@@ -28,4 +28,4 @@ params:
   registry_base_url: ghcr.io
   registry_full_url: ghcr.io/sky-lounge
   gcloud_region: us-central1
-#trigger 7
+#trigger 8
