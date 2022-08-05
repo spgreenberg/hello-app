@@ -22,4 +22,4 @@ params:
   registry_base_url: us-west1-docker.pkg.dev
   registry_full_url: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
   gcloud_region: us-central1
-#trigger 12
+#trigger 13
