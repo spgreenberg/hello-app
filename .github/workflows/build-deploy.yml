@@ -14,8 +14,8 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     env:
-      REGISTRY: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
-      REGISTRY_BASE_URL: us-west1-docker.pkg.dev
+      REGISTRY: ghcr.io/sky-lounge
+      REGISTRY_BASE_URL: ghcr.io
     steps:
     - name: Checkout branch
       uses: actions/checkout@v3
@@ -48,7 +48,7 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     env:
-      REGISTRY: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
+      REGISTRY: ghcr.io/sky-lounge
     steps:
     - name: Checkout branch
       uses: actions/checkout@v3
