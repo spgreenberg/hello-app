@@ -23,12 +23,11 @@ jobs:
     - name: Set image name
       run: |
         echo "IMAGE_NAME=${{ env.REGISTRY }}/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_ENV
-    - name: Build
-      uses: docker/build-push-action@v3
+    - name: build-container-image
+      uses: dfreilich/pack-action@v2.1.1
       with:
-        context: .
-        push: false
-        tags: "${{ env.IMAGE_NAME }}"
+        args: |
+          build ${{ env.IMAGE_NAME }} --buildpack paketo-buildpacks/nginx --builder paketobuildpacks/builder:base --env BP_WEB_SERVER=nginx
     - id: auth
       name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v0
