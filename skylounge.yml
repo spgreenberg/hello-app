@@ -1,0 +1,29 @@
+blueprint-uri: sky-lounge/skylounge-definitions/blueprints/hello-world/blueprint.yml
+
+workflows:
+  - workflow: build-deploy
+    jobs:
+      - job: build
+        steps:
+          - step: build-container-image
+            template-uri:
+              sky-lounge/skylounge-definitions/step-templates/docker/build-steps.yml
+              # Specify the URI to the step to build the container image.
+              # Choose from the following provided by SkyLounge:
+              # - sky-lounge/skylounge-definitions/step-templates/docker/build-steps.yml (builds using the docker)
+              # - sky-lounge/skylounge-definitions/step-templates/pack/nginx/build-steps.yml (builds using buildpacks)
+              # or you may use your own. If you choose to provider your own step, be sure
+              # it uses the `IMAGE_NAME` environment variable as the image name.
+
+      - job: integration-test
+        template-uri:
+          spgreenberg/hello/test/integration-test.yml
+          # Specify the URI to the integration test job file in the repo.
+          # For this Hello World example, set to:
+          # - <YOUR-ORG>/hello/test/integration-test.yml
+
+    params:
+      build_paths: ["**/*"]
+      registry_base_url: us-west1-docker.pkg.dev
+      registry_full_url: us-west1-docker.pkg.dev/sky-lounge-director/skylounge-images
+      gcloud_region: us-central1
