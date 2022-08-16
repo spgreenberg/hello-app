@@ -1,5 +1,5 @@
 integration-test:
-  needs: deploy
+  needs: load-balancer
   name: Integration Test
   runs-on: ubuntu-latest
   steps:
@@ -8,7 +8,9 @@ integration-test:
     - name: Verify index page
       run: |
         set -ex
-        status_code=$(curl -L -o /dev/null -s -w "%{http_code}" ${{ needs.deploy.outputs.app_url }})
+        status_code=$(curl -L -o /dev/null -s -w "%{http_code}" https://${APP_ROUTE})
         [[ 200 -eq $status_code ]] || (echo "CURL FAILED to return 200 status" && exit 1)
-        response=$(curl -L ${{ needs.deploy.outputs.app_url }})
+        response=$(curl -L https://${APP_ROUTE})
         [[ $response == *"Better Automation for Software Organizations"* ]] || (echo "CURL FAILED to return result containing substring: Better Automation for Software Organizations" && exit 1)
+      env: 
+        APP_ROUTE: ((app_route))
